@@ -43,7 +43,6 @@ export class TaskService {
       });
   }
 
-  // Map index to priority for demo purposes
   private mapPriority(index: number): 'Low' | 'Medium' | 'High' {
     const priorities: ('Low' | 'Medium' | 'High')[] = ['Low', 'Medium', 'High'];
     return priorities[index % 3];
@@ -63,15 +62,15 @@ export class TaskService {
     const taskIndex = currentTasks.findIndex(task => task.id === updatedTask.id);
 
     if (taskIndex > -1) {
-      // Update the task at the found index
+      
       currentTasks[taskIndex] = updatedTask;
-      this.tasksSubject.next([...currentTasks]); // Emit updated task list
+      this.tasksSubject.next([...currentTasks]); 
     }
   }
 
   deleteTask(taskId: number): void {
     const currentTasks = this.tasksSubject.value;
     const updatedTasks = currentTasks.filter(task => task.id !== taskId);
-    this.tasksSubject.next(updatedTasks); // Emit updated task list after deletion
+    this.tasksSubject.next(updatedTasks); 
   }
 }
